@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_bits.c                                        :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avolcy <avolcy@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 13:01:53 by avolcy            #+#    #+#             */
-/*   Updated: 2023/10/24 21:48:42 by avolcy           ###   ########.fr       */
+/*   Created: 2023/10/15 21:42:30 by avolcy            #+#    #+#             */
+/*   Updated: 2023/10/15 22:00:33 by avolcy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned char	swap_bits(unsigned char octet)
+#include <unistd.h>
+
+int main(int ac, char **av)
 {
-	return (octet << 4 | octet >> 4);
+	int i = 0;
+	char *s;
+
+	if (ac == 2)
+	{
+		s = av[1];
+
+		while (s[i])
+		{
+			if (s[i] == '_')
+			{
+				i++;
+				s[i] -= 32;
+			} 
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
+	write(1, "\n",1);
+	return 0;
 }
